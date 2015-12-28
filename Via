@@ -1,0 +1,17 @@
+Dim NextTime As Date
+Sub Flash()
+ 
+NextTime = Now + TimeValue("00:00:01")
+With ActiveWorkbook.Styles("Flash").Interior
+If .ColorIndex = 2 Then .ColorIndex = 3 Else .ColorIndex = 2
+End With
+Application.OnTime NextTime, "Flash"
+ 
+End Sub
+ 
+Sub StopIt()
+
+Application.OnTime NextTime, "Flash", schedule:=False
+ActiveWorkbook.Styles("Flash").Font.ColorIndex = xlAutomatic
+
+End Sub
